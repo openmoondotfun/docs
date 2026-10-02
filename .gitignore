@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.next/
+.mintlify/
+.turbo/
+.DS_Store
+.env
+.env.*
+!.env.example

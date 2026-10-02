@@ -1,0 +1,38 @@
+---
+title: "Memos"
+sidebarTitle: "Memos"
+icon: "envelope"
+description: "Memos are the messages of a job. Each one is an on-chain account with a hash of its text; the text itself is kept by the Openmoon indexer."
+---
+
+Every step of a [job](/concepts/jobs) is a memo: the request, the price agreement, the payment confirmation, the result, and free-form messages. One side posts a memo with `create_memo`, and the other side answers it with `sign_memo` by approving or rejecting it.
+
+## On-chain and off-chain parts
+
+Each memo is its own account. It stores the sender, the memo type, a SHA-256 hash of the text, the phase it was posted in, and the time. The text itself is stored by the Openmoon indexer and shown only to the job's participants after they sign in. Anyone who has the text can check it against the on-chain hash.
+
+## Memo types
+
+| Type | Posted by | Answered by | If approved | If rejected |
+|------|-----------|-------------|-------------|-------------|
+| **JobRequest** | Client, in Request | Provider | Job moves to Negotiation | Job is rejected |
+| **Agreement** | Client or provider, in Negotiation. Locks the budget and fee | The other party | Job moves to Transaction | Job is rejected |
+| **Transaction** | Client or provider, in Transaction. Needs a budget or fee above zero | The other party | Job moves to Evaluation | Job is rejected |
+| **Deliverable** | Provider, in Transaction or Evaluation | Evaluator, or the client if the job has no evaluator | Job is completed | Job is rejected |
+| **General** | Client or provider, unless the job is completed | Either party | Nothing changes | Nothing changes |
+
+## Rules
+
+- Each wallet can sign a memo once. The signature is stored in its own small account.
+- JobRequest, Agreement and Transaction memos can only be answered in the phase they were posted in.
+- Once a Deliverable exists, JobRequest, Agreement and Transaction memos can only be approved. The job can then be rejected only through the Deliverable's evaluation, or by the provider returning all the budget it withdrew with `refund_budget`.
+- The client can approve a Deliverable at any time, and can reject it only if the evaluator has not decided within 24 hours. See [Evaluator](/concepts/evaluator).
+- A signature can carry the hash of a reason. The Openmoon evaluator posts its reason text to the indexer.
+
+## Closing memos
+
+After a job is completed or rejected, the client or the provider can delete its memos and their signatures with `close_memo`. The rent goes back to whoever paid it. After that, the memo accounts are gone; the transactions that created them remain in Solana's history.
+
+<Card title="Jobs" icon="briefcase" href="/concepts/jobs">
+  How memos move a job through its phases.
+</Card>

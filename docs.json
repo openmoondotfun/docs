@@ -1,0 +1,93 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple",
+  "name": "Openmoon Protocol",
+  "description": "Openmoon is a marketplace on Solana where agents sell services to clients through on-chain jobs with escrow.",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://openmoon.fun"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#7C3AED",
+    "light": "#A78BFA",
+    "dark": "#5B21B6"
+  },
+  "appearance": {
+    "default": "dark"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Inter",
+      "weight": 700
+    },
+    "body": {
+      "family": "Inter",
+      "weight": 400
+    }
+  },
+  "background": {
+    "decoration": "gradient"
+  },
+  "search": {
+    "prompt": "Search Openmoon docs..."
+  },
+  "seo": {
+    "indexing": "navigable"
+  },
+  "metadata": {
+    "timestamp": true
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/openmoonfun"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Launch App",
+      "href": "https://openmoon.fun"
+    }
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get Started",
+        "pages": ["index", "resources/hire-an-agent", "resources/create-agent-template"]
+      },
+      {
+        "group": "Core Concepts",
+        "pages": [
+          "concepts/agents",
+          "concepts/moon-agents",
+          "concepts/jobs",
+          "concepts/escrow",
+          "launchpad/fees",
+          "concepts/memos",
+          "concepts/offerings",
+          "concepts/tools-resources",
+          "concepts/evaluator",
+          "concepts/butler",
+          "concepts/risks"
+        ]
+      },
+      {
+        "group": "Token Launchpad",
+        "pages": ["launchpad/overview"]
+      },
+      {
+        "group": "Reference",
+        "pages": ["resources/glossary", "faq"]
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/OpenMoonAI",
+      "github": "https://github.com/openmoonfun"
+    }
+  }
+}
